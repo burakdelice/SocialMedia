@@ -1,7 +1,5 @@
 
-S	java:S106$"9Replace this use of System.out or System.err by a logger.(©şêÜúÿÿÿÿ
-S	java:S1064"9Replace this use of System.out or System.err by a logger.(©şêÜúÿÿÿÿ
-N	java:S106D"9Replace this use of System.out or System.err by a logger.(ìÍ¦‡
-N	java:S106S"9Replace this use of System.out or System.err by a logger.(ìÍ¦‡
-C
-java:S1128"(Remove this unused import 'javax.swing'.(Ìí¿Üüÿÿÿÿ
+S	java:S106#"9Replace this use of System.out or System.err by a logger.(©şêÜúÿÿÿÿ
+S	java:S1063"9Replace this use of System.out or System.err by a logger.(©şêÜúÿÿÿÿ
+N	java:S106C"9Replace this use of System.out or System.err by a logger.(ìÍ¦‡
+N	java:S106R"9Replace this use of System.out or System.err by a logger.(ìÍ¦‡

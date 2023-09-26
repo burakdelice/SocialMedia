@@ -78,11 +78,13 @@ public class AuthController {
         }
         return value;
     }
+    /*
     @GetMapping("/redis_delete")
     @CacheEvict(cacheNames = "redisexample",allEntries = true)
     public void redisDelete(){
 
     }
+    */
     @GetMapping("/redis_delete2")
     public void redisDelete2(String value){
         //cacheManager.getCache("redisexample").clear();

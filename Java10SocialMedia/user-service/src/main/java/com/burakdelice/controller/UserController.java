@@ -4,6 +4,7 @@ package com.burakdelice.controller;
 import com.burakdelice.dto.request.UserSaveRequestDto;
 import com.burakdelice.dto.request.UserUpdateRequestDto;
 import com.burakdelice.dto.response.UserProfileFindAllResponseDto;
+import com.burakdelice.dto.response.UserProfileResponseDto;
 import com.burakdelice.repository.entity.UserProfile;
 import com.burakdelice.repository.enums.EStatus;
 import com.burakdelice.service.UserService;
@@ -68,5 +69,9 @@ public class UserController {
     @GetMapping("/find_all_by_slice")
     public ResponseEntity<Slice<UserProfile>> findAllBySlice(int pageSize, @RequestParam(required = false,defaultValue = "ASC") int pageNumber, String direction, @RequestParam(required = false,defaultValue = "id") String sortParameter){
         return ResponseEntity.ok(userService.findAllBySlice(pageSize,pageNumber,direction,sortParameter));
+    }
+    @GetMapping("find-user-simple-data")
+    public ResponseEntity<UserProfileResponseDto> findByUserSimpleDataWithAuthId(@PathVariable Long authId){
+        return ResponseEntity.ok(userService.findByUserSimpleDataWithAuthId(authId));
     }
 }

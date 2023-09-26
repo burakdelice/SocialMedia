@@ -4,6 +4,7 @@ import com.burakdelice.dto.request.AuthUpdateRequestDto;
 import com.burakdelice.dto.request.UserSaveRequestDto;
 import com.burakdelice.dto.request.UserUpdateRequestDto;
 import com.burakdelice.dto.response.UserProfileFindAllResponseDto;
+import com.burakdelice.dto.response.UserProfileResponseDto;
 import com.burakdelice.rabbitmq.model.RegisterElasticModel;
 import com.burakdelice.rabbitmq.model.RegisterModel;
 import com.burakdelice.repository.entity.UserProfile;
@@ -30,4 +31,5 @@ public interface IUserMapper {
     UserProfileFindAllResponseDto toUserProfileFindAllResponseDto(UserProfile userProfile);
 
     RegisterElasticModel toRegisterElasticModel(UserProfile userProfile);
+    UserProfileResponseDto toUserProfileResponseDto(UserProfile userProfile);
 }

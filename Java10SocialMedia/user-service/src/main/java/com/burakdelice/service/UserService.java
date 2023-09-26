@@ -4,11 +4,13 @@ package com.burakdelice.service;
 import com.burakdelice.dto.request.UserSaveRequestDto;
 import com.burakdelice.dto.request.UserUpdateRequestDto;
 import com.burakdelice.dto.response.UserProfileFindAllResponseDto;
+import com.burakdelice.dto.response.UserProfileResponseDto;
 import com.burakdelice.exception.ErrorType;
 import com.burakdelice.exception.UserManagerException;
 import com.burakdelice.manager.IAuthManager;
 import com.burakdelice.mapper.IUserMapper;
 import com.burakdelice.rabbitmq.model.ActivationModel;
+import com.burakdelice.rabbitmq.model.CreatePostModel;
 import com.burakdelice.rabbitmq.model.RegisterModel;
 import com.burakdelice.rabbitmq.producer.RegisterElasticProducer;
 import com.burakdelice.repository.IUserRepository;
@@ -225,5 +227,26 @@ public class UserService extends ServiceManager<UserProfile, String> {
         Sort sort = Sort.by(Sort.Direction.fromString(direction), sortParameter);
         Pageable pageable = PageRequest.of(pageNumber, pageSize, sort);
         return userRepository.findAll(pageable);
+    }
+
+    public Optional<UserProfile> findByUserWithAuthId(Long authId) {
+        Optional<UserProfile> userProfile = userRepository.findByAuthId(authId);
+        if(userProfile.isEmpty()){
+            throw new UserManagerException(ErrorType.USER_NOT_FOUND);
+        }
+        return userProfile;
+    }
+    public UserProfileResponseDto findByUserSimpleDataWithAuthId(Long authId) {
+        Optional<UserProfile> userProfile = userRepository.findByAuthId(authId);
+        if(userProfile.isEmpty()){
+            throw new UserManagerException(ErrorType.USER_NOT_FOUND);
+        }
+        UserProfileResponseDto userProfileResponseDto = UserProfileResponseDto
+                .builder()
+                .userId(userProfile.get().getId())
+                .username(userProfile.get().getUsername())
+                .userAvatar(userProfile.get().getAvatar())
+                .build();
+        return userProfileResponseDto;
     }
 }
